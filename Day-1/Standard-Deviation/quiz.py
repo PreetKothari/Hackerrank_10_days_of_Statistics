@@ -5,7 +5,7 @@ def mean(arr):
 def std_dev(arr, size):
     sum = 0
     for i in range(size):
-        sum = sum + (data[i] - mean(data)) ** 2
+        sum = sum + (arr[i] - mean(arr)) ** 2
     return ((sum/size)**0.5)
 
 # Set data
