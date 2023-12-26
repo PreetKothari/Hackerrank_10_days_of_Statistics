@@ -7,20 +7,24 @@
 # 3. Failed the test (i.e., have a grade < 60)?
 
 # Import library
-import math
+from math import erf
 
 # Define functions
-def cumulative(mean, std, value):
-    return 0.5 * (1 + math.erf((value - mean) / (std * (2 ** 0.5))))
+def cum_dist_func(mean, std_dev, x):
+    return (0.5 * (1 + erf((x - mean)/(std_dev * (2 ** 0.5)))))
 
 # Set data
-initial_values = list(map(float, input().split()))
-mean = initial_values[0]
-std = initial_values[1]
-val_first_question = float(input())
-val_sec_third_question = float(input())
+values = list(map(float, input().split()))
+mean = values[0]
+std_dev = values[1]
+q1 = float(input())
+q2 = float(input())
 
-# Gets the result and show on the screen
-print (round(100 - (cumulative(mean, std, val_first_question) * 100), 2))
-print (round(100 - (cumulative(mean, std, val_sec_third_question) * 100), 2))
-print (round(cumulative(mean, std, val_sec_third_question) * 100, 2))
+# Gets the result and show it on the screen
+prob_q1 = 100 - (cum_dist_func(mean, std_dev, q1) * 100) # 100 - prob of less than equal to 80
+prob_q2 = 100 - (cum_dist_func(mean, std_dev, q2) * 100) # 100 - prob of less than equal to 60
+prob_q3 = cum_dist_func(mean, std_dev, q2) * 100 # prob of less than equal to 60
+
+print("{:.2f}".format(prob_q1))
+print("{:.2f}".format(prob_q2))
+print("{:.2f}".format(prob_q3))
