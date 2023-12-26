@@ -15,7 +15,7 @@ def cum_dist_func(mean, std_dev, x):
 # Set data
 values = list(map(float, input().split()))
 mean = values[0]
-std_dev = alues[1]
+std_dev = values[1]
 
 less_period = float(input())
 between_period = list(map(float, input().split()))
