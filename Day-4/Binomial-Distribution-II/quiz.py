@@ -4,10 +4,10 @@
 
 # Define functions
 def factorial(n):
-    if n == 1 or n == 0:
+    if n == 0:
         return 1
-    if n > 1:
-        return factorial(n - 1) * n
+    else:
+        return n * factorial(n - 1)
 
 def binomial(x, n, p):
     f = factorial(n) / (factorial(n - x) * factorial(x))
@@ -15,19 +15,18 @@ def binomial(x, n, p):
 
 # Set data
 values = list(map(float, input().split()))
-p = (values[0] / 100)
-n = int(values[1])
+prob_fail = (values[0] / 100)
+batch_size = int(values[1])
 
 # First rule: No more than 2 rejects
 no_more_than_2_rejects = 0
-for i in range(n):
-    if i < 3:
-        no_more_than_2_rejects = no_more_than_2_rejects + binomial(i, n, p)
-print(round(no_more_than_2_rejects, 3))
-
 # Second rule: At least 2 rejects
-at_least_2_rejects = 0
-for i in range(n):
-    if i > 1:
-        at_least_2_rejects = at_least_2_rejects + binomial(i, n, p)
-print(round(at_least_2_rejects, 3))
+at_least_2_rejects =
+
+for i in range(3):
+    if i == 2:
+        at_least_2_rejects = 1 - no_more_than_2_rejects 
+    no_more_than_2_rejects += binomial(i, n, prob_fail)
+
+print('{:.3f}'.format(no_more_than_2_rejects))
+print('{:.3f}'.format(at_least_2_rejects))
