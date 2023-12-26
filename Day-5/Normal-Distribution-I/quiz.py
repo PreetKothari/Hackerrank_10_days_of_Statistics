@@ -6,19 +6,25 @@
 # 2. Between 20 and 22 hours?
 
 # Import library
-import math
+from math import erf
 
 # Define functions
-def cumulative(mean, std, value):
-    return 0.5 * (1 + math.erf((value - mean) / (std * (2 ** 0.5))))
+def cum_dist_func(mean, std_dev, x):
+    return (0.5 * (1 + erf((x - mean)/(std_dev * (2 ** 0.5)))))
 
 # Set data
-initial_values = list(map(float, input().split()))
-mean = initial_values[0]
-std = initial_values[1]
+values = list(map(float, input().split()))
+mean = values[0]
+std_dev = alues[1]
+
 less_period = float(input())
 between_period = list(map(float, input().split()))
 
-# Gets the result and show on the screen
-print (round(cumulative(mean, std, less_period),3))
-print (round(cumulative(mean, std, between_period[1]) - cumulative(mean, std, between_period[0]), 3))
+# Gets the result and show it on the screen
+prob_less_period = cum_dist_func(mean, std_dev, less_period)
+f_a = cum_dist_func(mean, std_dev, between_period[0])
+f_b = cum_dist_func(mean, std_dev, between_period[1])
+prob_between_period = (f_b - f_a)
+
+print("{:.3f}".format(prob_less_period))
+print("{:.3f}".format(prob_between_period))
