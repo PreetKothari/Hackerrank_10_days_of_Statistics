@@ -1,7 +1,4 @@
 """
-Pearson Correlation Coefficient II
-Quiz: https://www.hackerrank.com/challenges/s10-mcq-7
-
 regression X:
 3x + 4y + 8 = 0
 - 4y = 3x + 8
