@@ -1,27 +1,34 @@
-# Pearson correlation coefficient
-# Reference: https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
-
 # Question: Given two n-element data sets, X and Y, calculate the value of
 # the Pearson correlation coefficient.
 
 # import libraries
 import statistics as st
 
-# define function to Pearson correlation coefficient
-def correlation_coefficient(n, dt_x, dt_y):
-    mean_x = st.mean(dt_x)
-    mean_y = st.mean(dt_y)
-    std_x = st.pstdev(dt_x)
-    std_y = st.pstdev(dt_y)
-    c = 0
+# Define functions
+def mean(x):
+    return (sum(x)/len(x))
+
+def std_dev(x, n):
+    sum = 0
+    x_mean = mean(x)
     for i in range(n):
-        c = c + (dt_x[i] - mean_x) * (dt_y[i] - mean_y)
-    return c / (n * std_x * std_y)
+        sum += ((x[i] - x_mean) ** 2)
+    return ((sum/n) ** 0.5)
+
+def pearson_corr_coef(x, y, n):
+    sum = 0
+    x_mean = mean(x)
+    y_mean = mean(y)
+    std_x = std_dev(x, n)
+    std_y = std_dev(y, n)
+    for i in range(n):
+        sum += ((x[I] - x_mean) * (y[I] - y_mean))
+    return (sum/(n* std_x * stdy))
 
 # Set data
 n = int(float(input()))
-data_set_x = list(map(float, input().split()))
-data_set_y = list(map(float, input().split()))
+x = list(map(float, input().split()))
+y = list(map(float, input().split()))
 
-# Gets the result and show on the screen
-print (round(correlation_coefficient(n, data_set_x, data_set_y), 3))
+# Gets the result and show it on the screen
+print("{:3f}".format(pearson_corr_coef(x, y, n)))
