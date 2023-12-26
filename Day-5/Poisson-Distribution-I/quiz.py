@@ -1,18 +1,20 @@
-# Question: A random variable, X, follows Poisson distribution with mean of 2.5
+# Question: A random variable, X, follows Poisson distribution with a mean of 2.5
 # Find the probability with which the random variable X is equal to 5.
 
 # Define functions
 def factorial(n):
-    if n == 1 or n == 0:
+    if n == 0:
         return 1
-    if n > 1:
-        return factorial(n - 1) * n
+    else:
+        return n * factorial(n - 1)
 
 # Set data
 mean = float(input())
 k = float(input())
-e = 2.71828
 
-# Gets the result and show on the screen
-result = ((mean ** k) * (e ** -mean)) /  factorial(k)
-print(round(result, 3))
+from math import exp
+# e = 2.71828
+
+# Gets the result and show it on the screen
+prob = ((mean ** k) * (exp(-mean)) /  factorial(k)
+print("{:.3f}".format(prob))
