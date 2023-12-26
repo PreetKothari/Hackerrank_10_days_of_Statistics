@@ -1,24 +1,27 @@
 # Define functions
-def median(size, values):
-    if size % 2 == 0:
-        median = (values[int(size/2)-1] + values[int(size/2)]) / 2
+def median(values,size):
+    if size%2 == 0:
+        median = (values[(size//2)-1]+values[size//2])/2
     else:
-        median = values[int(size/2)]
+        median = (values[size//2])
     return int(median)
 
 # Set the data
-size = int(input())
-numbers = sorted(list(map(int, input().split())))
+n = int(input())
+m = list(map(int,input().split()))
+m.sort()
 
 # Verify that the total data is even or odd
-if size % 2 == 0:
-    data_low = numbers[0:int(size/2)]
-    data_high = numbers[int(size/2):size]
+if n%2 == 0:
+    q1 = median(m[:(n//2)],(n//2))
+    q2 = median(m,n)
+    q3 = median(m[(n//2):],(n//2))
 else:
-    data_low = numbers[0:int(size/2)]
-    data_high = numbers[int(size/2)+1:size]
+    q1 = median(m[:(n//2)],(n//2))
+    q2 = median(m,n)
+    q3 = median(m[(n//2)+1:],(n//2))
 
-# Get the final result and print on the screen
-print (median(len(data_low), data_low))
-print (median(size, numbers))
-print (median(len(data_high), data_high))
+# Get the final result and print it on the screen
+print(q1)
+print(q2)
+print(q3)
