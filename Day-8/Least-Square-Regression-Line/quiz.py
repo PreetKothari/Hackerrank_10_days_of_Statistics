@@ -1,23 +1,39 @@
-# Linear Regression
-# Reference: https://en.wikipedia.org/wiki/Linear_regression
+# Define functions
+def mean(x):
+    return (sum(x)/len(x))
 
-# Question: https://www.hackerrank.com/challenges/s10-least-square-regression-line
+def std_dev(x, n):
+    sum = 0
+    x_mean = mean(x)
+    for i in range(n):
+        sum += ((x[i] - x_mean) ** 2)
+    return ((sum/n) ** 0.5)
 
-# import library
-import statistics as st
+def pearson_corr_coef(x, y, n):
+    sum = 0
+    x_mean = mean(x)
+    y_mean = mean(y)
+    std_x = std_dev(x, n)
+    std_y = std_dev(y, n)
+    for i in range(n):
+        sum += ((x[I] - x_mean) * (y[I] - y_mean))
+    return (sum/(n* std_x * stdy))
+
+def f_y(a, b, x):
+    return a + (b * x)
 
 # Set data
+x = []
+y = []
 n = 5
-x = [95, 85, 80, 70, 60]
-y = [85, 95, 70, 65, 70]
-mean_x = st.mean(x)
-mean_y = st.mean(y)
-x_squared = sum([x[i] ** 2 for i in range(5)])
-xy = sum([x[i]*y[i] for i in range(5)])
+for i in range(n):
+    val = list(map(float,input().split()))
+    x.append(val[0])
+    y.append(val[1])
 
 # Set the B and A
-b = (n * xy - sum(x) * sum(y)) / (n * x_squared - (sum(x) ** 2))
-a = mean_y - b * mean_x
+b = ((pearson_corr_coef(x, y, n) * std_dev(y, n)) / std_dev(x, n))
+a = mean(y) - (b * mean(x))
 
-# Gets the result and show on the screen
-print (round(a + 80 * b, 3))
+# Gets the result and show it on the screen
+print("{:3f}".format(f_y(a, b, 80)))
