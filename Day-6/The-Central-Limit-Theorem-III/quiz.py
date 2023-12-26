@@ -6,19 +6,16 @@
 # A and B such that P(A < x < B) = 0.95. Use the value of z = 1.96. Note
 # that z is the z-score.
 
-# Import library
-import math
-
 # Set data
-n = float(input())
+values = float(input())
 mean = float(input())
-std = float(input())
+std_dev = float(input())
 percent_ci = float(input())
-value_ci = float(input())
+z_value = float(input())
 
 # Formula CI
-ci = value_ci * (std / math.sqrt(n))
+ci = z_value * (std_dev/(values ** 0.5))
 
-# Gets the result and show on the screen
+# Gets the result and show it on the screen
 print(round(mean - ci, 2))
 print(round(mean + ci, 2))
