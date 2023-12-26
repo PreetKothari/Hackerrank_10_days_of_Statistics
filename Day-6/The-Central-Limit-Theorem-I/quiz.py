@@ -6,20 +6,20 @@
 # into the freight elevator and transported?
 
 # Import library
-import math
+from math import erf
 
 # Define functions
-def cumulative(mean, std, value):
-    return 0.5 * (1 + math.erf((value - mean) / (std * (2 ** 0.5))))
+def cum_dist_func(mean, std_dev, x):
+    return (0.5 * (1 + erf((x - mean)/(std_dev * (2 ** 0.5)))))
 
 # Set data
 max_weight = float(input())
 n = float(input())
 mean = float(input())
-std = float(input())
+std_dev = float(input())
 
-new_mean = mean * n
-new_std = math.sqrt(n) * std
+mean_dash = n * mean
+std_dev_dash = (n ** 0.5) * std_dev
 
-# Gets the result and show on the screen
-print (round(cumulative(new_mean, new_std, max_weight),4))
+# Gets the result and show it on the screen
+print("{:.4f}".format(cum_dist_func(mean_dash, std_dev_dash, max_weight)))
