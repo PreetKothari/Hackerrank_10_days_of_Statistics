@@ -1,19 +1,16 @@
-# Import library
-import math
+# Define functions
+def mean(arr):
+    return sum(arr)/len(arr)
 
-# Define functionts
-def mean(data):
-    return sum(data) / len(data)
-
-def stddev(data, size):
+def std_dev(arr, size):
     sum = 0
     for i in range(size):
         sum = sum + (data[i] - mean(data)) ** 2
-    return math.sqrt(sum / size)
+    return ((sum/size)**0.5)
 
 # Set data
-size = int(input())
-numbers = list(map(int, input().split()))
+n = int(input())
+arr = list(map(int,input().split()))
 
 # Get standard deviation
-print(round(stddev(numbers, size), 1))
+print("{:.1f}".format(std_dev(arr, n)))
